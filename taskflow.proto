@@ -4,6 +4,23 @@ package TaskFlow;
 
 option go_package = "./proto";
 
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message CreateUserResponse {
+  User user = 1;
+}
+
 message Task {
   string id = 1;
   string title = 2;
@@ -19,6 +36,14 @@ message CreateTaskRequest {
 
 message CreateTaskResponse {
   Task task = 1;
+}
+
+message getUserRequest {
+  string id = 1;
+}
+
+message getUserResponse {
+  User user = 1;
 }
 
 message GetTaskRequest {
@@ -49,8 +74,14 @@ message UpdateTaskResponse {
 }
 
 service TaskService {
+
+  //Task
   rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
   rpc GetTask(GetTaskRequest) returns (GetTaskResponse);
   rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse);
   rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
+
+  //User
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc getUser(getUserRequest) returns (getUserResponse);
 }

@@ -7,7 +7,7 @@ import (
 	"net"
 	"os"
 
-	pb "github.com/saddoestlxrd/TaskFLow/proto/taskflow.pb"
+	pb "github.com/saddiestlxrd/TaskFlow/proto/taskflow.pb"
 
 	"github.com/jackc/pgx/v5"
 	"google.golang.org/grpc"

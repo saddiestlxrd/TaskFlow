@@ -5,7 +5,7 @@ package TaskFlow;
 option go_package = "./proto";
 
 message User {
-  string id = 1;
+  int32 id = 1;
   string name = 2;
   string email = 3;
   string password = 4;
@@ -21,17 +21,31 @@ message CreateUserResponse {
   User user = 1;
 }
 
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  User user = 1;
+}
+
 message Task {
-  string id = 1;
+  int32 id = 1;
   string title = 2;
   string description = 3;
   bool status = 4;
-  string owner = 5; //do not know what is better userid or owner wanna try to use owner instead of userid
+  string created_at = 5;
+  string updated_at = 6;
+  string owner = 7; //do not know what is better userid or owner wanna try to use owner instead of userid
 }
 
 message CreateTaskRequest {
   string title = 1;
   string description = 2;
+  string created_at = 3;
+  string updated_at = 4;
+  string owner = 5;
 }
 
 message CreateTaskResponse {
@@ -48,14 +62,16 @@ message getUserResponse {
 
 message GetTaskRequest {
   string id = 1;
+  string owner = 2;
 }
 
 message GetTaskResponse {
-  Task task = 1;
+  repeated Task tasks = 1;
 }
 
 message DeleteTaskRequest {
   string id = 1;
+  string owner = 2;
 }
 
 message DeleteTaskResponse {
@@ -67,6 +83,8 @@ message UpdateTaskRequest {
   string title = 2;
   string description = 3;
   bool status = 4;
+  string updated_at = 5;
+  string owner = 6;
 }
 
 message UpdateTaskResponse {
@@ -83,5 +101,6 @@ service TaskService {
 
   //User
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
   rpc getUser(getUserRequest) returns (getUserResponse);
 }

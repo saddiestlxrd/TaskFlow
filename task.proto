@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package task;
+
+option go_package = "./proto";
+
+service TaskService {
+
+  //Task
+  rpc CreateTask(CreateTaskV1Request) returns (CreateTaskV1Response);
+  rpc GetTask(GetTaskV1Request) returns (GetTaskV1Response);
+  rpc DeleteTask(DeleteTaskV1Request) returns (DeleteTaskV1Response);
+  rpc UpdateTask(UpdateTaskV1Request) returns (UpdateTaskV1Response);
+}
+
+
+message Task {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  bool status = 4;
+  string created_at = 5;
+  string updated_at = 6;
+  string owner = 7; //do not know what is better userid or owner wanna try to use owner instead of userid
+}
+
+message CreateTaskV1Request {
+  string title = 1;
+  string description = 2;
+  string created_at = 3;
+  string updated_at = 4;
+  string owner = 5;
+}
+
+message CreateTaskV1Response {
+  Task task = 1;
+}
+
+message GetTaskV1Request {
+  string id = 1;
+  string owner = 2;
+}
+
+message GetTaskV1Response {
+  repeated Task tasks = 1;
+}
+
+message DeleteTaskV1Request {
+  string id = 1;
+  string owner = 2;
+}
+
+message DeleteTaskV1Response {
+  Task task = 1;
+}
+
+message UpdateTaskV1Request {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool status = 4;
+  string updated_at = 5;
+  string owner = 6;
+}
+
+message UpdateTaskV1Response {
+  Task task = 1;
+}

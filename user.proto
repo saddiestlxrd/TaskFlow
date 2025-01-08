@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package User;
+
+option go_package = "./proto";
+
+service UserService {
+  rpc CreateUser(CreateUserV1Request) returns (CreateUserV1Response);
+  rpc Login(LoginV1Request) returns (LoginV1Response);
+  rpc getUser(GetUserV1Request) returns (GetUserV1Response);
+}
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message CreateUserV1Request {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message CreateUserV1Response {
+  User user = 1;
+}
+
+message LoginV1Request {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginV1Response {
+  User user = 1;
+}
+
+message GetUserV1Request {
+  string id = 1;
+}
+
+message GetUserV1Response {
+  User user = 1;
+}

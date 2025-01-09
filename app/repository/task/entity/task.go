@@ -2,12 +2,12 @@ package entity
 
 import "time"
 
-type task struct {
-	id          uint64
-	title       string
-	description string
-	status      bool
-	created_at  time.Time
-	updated_at  time.Time
-	user_id     uint64
+type Task struct {
+	ID          uint64    `db:"id"`
+	Title       string    `db:"title"`
+	Description string    `db:"description"`
+	Status      bool      `db:"status"`
+	Created_at  time.Time `db:"created_at"`
+	Updated_at  time.Time `db:"updated_at"`
+	User_id     uint64    `db:"user_id"`
 }

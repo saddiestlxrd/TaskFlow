@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"TaskFlow/app/repository/task"
 	"TaskFlow/app/repository/user"
 	"github.com/jackc/pgx/v5"
 )
@@ -14,6 +15,7 @@ type Repository interface {
 
 type repository struct {
 	userRepository user.User
+	taskRepository task.Task
 }
 
 func New(db *pgx.Conn) Repository {

@@ -48,7 +48,7 @@ func (t *task) Get(ctx context.Context) ([]entity.Task, error) {
 	var tasks []entity.Task
 	for rows.Next() {
 		var task entity.Task
-		if err := rows.Scan(&task.ID, &task.Title, &task.Description, &task.Status, &task.Created_at, &task.Updated_at); err != nil {
+		if err := rows.Scan(&task.ID, &task.Title, &task.Description, &task.Status, &task.Created_at, &task.Updated_at, &task.User_id); err != nil {
 			return nil, errors.New("failed to scan task: " + err.Error())
 		}
 		tasks = append(tasks, task)

@@ -7,12 +7,7 @@ type User interface {
 }
 
 type user struct {
-	db         *pgx.Conn
-	username   *user.username
-	email      *user.email
-	password   *user.password
-	created_at *user.created_ats
-	update_at  *user.updated_at
+	db *pgx.Conn
 }
 
 func New(db *pgx.Conn) User {
